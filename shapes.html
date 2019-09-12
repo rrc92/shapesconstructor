@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+	// 1. a Shape constructor has a 
+    // name property
+    // sides property
+    //     number
+
+	function shape(name, sides){
+		this.name = name;
+		this.sides = sides;
+    }
+    // 2. a Rectangle is a shape
+    
+    // height
+    // width
+    
+    function rectangle (height, width, name, sides){
+        this.height = height; 
+        this.width = width; 
+
+        shape.call(this, name, sides);
+    }
+
+	// on the Rectangle's prototype 
+   
+    // make sure to connect the Rectangle and the Shape
+    rectangle.prototype = Object.create(shape.prototype); 
+
+     // an area function
+    
+    rectangle.prototype.area= function(){
+        console.log(this.height*this.width);
+    }
+
+    // a perimeter function
+
+    rectangle.prototype.perimeter = function(){
+        console.log (this.height*2 + this.width*2);
+    }
+
+    // 3. 
+    // a Square is a Rectangle
+    // but if the height and width are different then set the width to be the height 
+    
+    function square (height, name, sides){
+        rectangle.call(this, height, height, name, sides);
+    }
+    square.prototype = Object.create(rectangle.prototype)
+
+
+	//make each shape objects and console log their h, w, name and sides, call the area and perimeter functions on both shapes
+
+	var a = new rectangle(20, 50, 'Bob', ['left', 'up', 'right','down']);
+
+	var b = new square(20, 20, 'Sali', ['left', 'up', 'right','down']);
+
+    a.area();
+    a.perimeter();
+    b.area();
+    b.perimeter();
+
+
+</script>
+</body>
+</html>
